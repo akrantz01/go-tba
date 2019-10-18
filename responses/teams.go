@@ -27,7 +27,7 @@ type Team struct {
 	LocationName string `json:"location_name"`
 	Website string `json:"website"`
 	RookieYear int `json:"rookie_year"`
-	HomeChampionship []string `json:"home_championship"`
+	HomeChampionship map[string]string `json:"home_championship"`
 }
 
 type TeamRobot struct {
