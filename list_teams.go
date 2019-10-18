@@ -82,7 +82,7 @@ func ListTeamsSimple(page int64, apiKey string, opts *RequestOptions) ([]respons
 // Get a list of team keys in the TBA database.
 // The response is paginated by team numbers in sets of 500.
 // The set of 500 is not number of teams, but the range of team numbers.
-func ListTeamsKey(page int64, apiKey string, opts *RequestOptions) ([]string, int, error) {
+func ListTeamKeys(page int64, apiKey string, opts *RequestOptions) ([]string, int, error) {
 	// Generate the request
 	req := newRequest("/teams/"+strconv.FormatInt(page, 10)+"/keys", apiKey, opts)
 

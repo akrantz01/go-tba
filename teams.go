@@ -246,7 +246,7 @@ func TeamEventsSimple(team, apiKey string, opts *RequestOptions) ([]responses.Ev
 }
 
 // Get a list of keys for events a team is in
-func TeamEventsKey(team, apiKey string, opts *RequestOptions) ([]string, int, error) {
+func TeamEventKeys(team, apiKey string, opts *RequestOptions) ([]string, int, error) {
 	// Generate the request
 	req := newRequest("/team/"+team+"/events/keys", apiKey, opts)
 
@@ -484,7 +484,7 @@ func TeamEventMatchesSimple(team, event, apiKey string, opts *RequestOptions) ([
 }
 
 // Get a simplified list of matches a team is in for an event
-func TeamEventMatchesKey(team, event, apiKey string, opts *RequestOptions) ([]string, int, error) {
+func TeamEventMatchKeys(team, event, apiKey string, opts *RequestOptions) ([]string, int, error) {
 	// Generate the request
 	req := newRequest("/team/"+team+"/event/"+event+"/matches/keys", apiKey, opts)
 

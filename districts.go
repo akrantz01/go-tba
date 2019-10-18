@@ -110,7 +110,7 @@ func DistrictEventsSimple(district, apiKey string, opts *RequestOptions) ([]resp
 }
 
 // Get the keys of the events associated with a district
-func DistrictEventsKey(district, apiKey string, opts *RequestOptions) ([]string, int, error) {
+func DistrictEventKeys(district, apiKey string, opts *RequestOptions) ([]string, int, error) {
 	// Generate the request
 	req := newRequest("/districts/"+district+"/events/keys", apiKey, opts)
 
@@ -212,7 +212,7 @@ func DistrictTeamsSimple(district, apiKey string, opts *RequestOptions) ([]respo
 }
 
 // Get the keys of the teams associated with a district
-func DistrictTeamsKey(district, apiKey string, opts *RequestOptions) ([]string, int, error) {
+func DistrictTeamKeys(district, apiKey string, opts *RequestOptions) ([]string, int, error) {
 	// Generate the request
 	req := newRequest("/districts/"+district+"/teams/keys", apiKey, opts)
 

@@ -76,7 +76,7 @@ func ListEventsSimple(year int64, apiKey string, opts *RequestOptions) ([]respon
 }
 
 // Get the keys of events for a given year.
-func ListEventsKey(year int64, apiKey string, opts *RequestOptions) ([]string, int, error) {
+func ListEventKeys(year int64, apiKey string, opts *RequestOptions) ([]string, int, error) {
 	// Generate the request
 	req := newRequest("/events/"+strconv.FormatInt(year, 10)+"/keys", apiKey, opts)
 
