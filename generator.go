@@ -9,8 +9,9 @@ import (
 // The URL of the TBA v3 read-only API
 const tbaApi = "https://www.thebluealliance.com/api/v3"
 
-// Invalid API token error
+// Error constants
 var ErrInvalidToken = errors.New("invalid api token")
+var ErrYearOutOfBounds = errors.New("year out of bounds")
 
 // Additional configuration options for the request being sent
 type RequestOptions struct {
