@@ -33,6 +33,11 @@ func ListEvents(year int64, apiKey string, opts *RequestOptions) ([]responses.Ev
 		return nil, resp.StatusCode, err
 	}
 
+	// Close the body
+	if err := resp.Body.Close(); err != nil {
+		return nil, resp.StatusCode, err
+	}
+
 	return events, resp.StatusCode, nil
 }
 
@@ -62,6 +67,11 @@ func ListEventsSimple(year int64, apiKey string, opts *RequestOptions) ([]respon
 		return nil, resp.StatusCode, err
 	}
 
+	// Close the body
+	if err := resp.Body.Close(); err != nil {
+		return nil, resp.StatusCode, err
+	}
+
 	return events, resp.StatusCode, nil
 }
 
@@ -88,6 +98,11 @@ func ListEventsKey(year int64, apiKey string, opts *RequestOptions) ([]string, i
 	// Decode body
 	var events []string
 	if err := json.NewDecoder(resp.Body).Decode(&events); err != nil {
+		return nil, resp.StatusCode, err
+	}
+
+	// Close the body
+	if err := resp.Body.Close(); err != nil {
 		return nil, resp.StatusCode, err
 	}
 

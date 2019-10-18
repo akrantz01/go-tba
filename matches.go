@@ -32,6 +32,11 @@ func Match(key, apiKey string, opts *RequestOptions) (*responses.Match, int, err
 		return nil, resp.StatusCode, err
 	}
 
+	// Close the body
+	if err := resp.Body.Close(); err != nil {
+		return nil, resp.StatusCode, err
+	}
+
 	return &match, resp.StatusCode, nil
 }
 
@@ -61,6 +66,11 @@ func MatchSimple(key, apiKey string, opts *RequestOptions) (*responses.MatchSimp
 		return nil, resp.StatusCode, err
 	}
 
+	// Close the body
+	if err := resp.Body.Close(); err != nil {
+		return nil, resp.StatusCode, err
+	}
+
 	return &match, resp.StatusCode, nil
 }
 
@@ -87,6 +97,11 @@ func MatchTimeseries(key, apiKey string, opts *RequestOptions) (*responses.Times
 	// Decode body
 	var timeseries responses.Timeseries2018
 	if err := json.NewDecoder(resp.Body).Decode(&timeseries); err != nil {
+		return nil, resp.StatusCode, err
+	}
+
+	// Close the body
+	if err := resp.Body.Close(); err != nil {
 		return nil, resp.StatusCode, err
 	}
 

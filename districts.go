@@ -33,6 +33,11 @@ func DistrictsByYear(year int64, apiKey string, opts *RequestOptions) ([]respons
 		return nil, resp.StatusCode, err
 	}
 
+	// Close the body
+	if err := resp.Body.Close(); err != nil {
+		return nil, resp.StatusCode, err
+	}
+
 	return districts, resp.StatusCode, nil
 }
 
@@ -59,6 +64,11 @@ func DistrictEvents(district, apiKey string, opts *RequestOptions) ([]responses.
 	// Decode body
 	var events []responses.Event
 	if err := json.NewDecoder(resp.Body).Decode(&events); err != nil {
+		return nil, resp.StatusCode, err
+	}
+
+	// Close the body
+	if err := resp.Body.Close(); err != nil {
 		return nil, resp.StatusCode, err
 	}
 
@@ -91,6 +101,11 @@ func DistrictEventsSimple(district, apiKey string, opts *RequestOptions) ([]resp
 		return nil, resp.StatusCode, err
 	}
 
+	// Close the body
+	if err := resp.Body.Close(); err != nil {
+		return nil, resp.StatusCode, err
+	}
+
 	return events, resp.StatusCode, nil
 }
 
@@ -117,6 +132,11 @@ func DistrictEventsKey(district, apiKey string, opts *RequestOptions) ([]string,
 	// Decode body
 	var events []string
 	if err := json.NewDecoder(resp.Body).Decode(&events); err != nil {
+		return nil, resp.StatusCode, err
+	}
+
+	// Close the body
+	if err := resp.Body.Close(); err != nil {
 		return nil, resp.StatusCode, err
 	}
 
@@ -149,6 +169,11 @@ func DistrictTeams(district, apiKey string, opts *RequestOptions) ([]responses.T
 		return nil, resp.StatusCode, err
 	}
 
+	// Close the body
+	if err := resp.Body.Close(); err != nil {
+		return nil, resp.StatusCode, err
+	}
+
 	return teams, resp.StatusCode, nil
 }
 
@@ -175,6 +200,11 @@ func DistrictTeamsSimple(district, apiKey string, opts *RequestOptions) ([]respo
 	// Decode body
 	var teams []responses.TeamSimple
 	if err := json.NewDecoder(resp.Body).Decode(&teams); err != nil {
+		return nil, resp.StatusCode, err
+	}
+
+	// Close the body
+	if err := resp.Body.Close(); err != nil {
 		return nil, resp.StatusCode, err
 	}
 
@@ -207,6 +237,11 @@ func DistrictTeamsKey(district, apiKey string, opts *RequestOptions) ([]string, 
 		return nil, resp.StatusCode, err
 	}
 
+	// Close the body
+	if err := resp.Body.Close(); err != nil {
+		return nil, resp.StatusCode, err
+	}
+
 	return teams, resp.StatusCode, nil
 }
 
@@ -233,6 +268,11 @@ func DistrictRankings(district, apiKey string, opts *RequestOptions) ([]response
 	// Decode body
 	var rankings []responses.DistrictRanking
 	if err := json.NewDecoder(resp.Body).Decode(&rankings); err != nil {
+		return nil, resp.StatusCode, err
+	}
+
+	// Close the body
+	if err := resp.Body.Close(); err != nil {
 		return nil, resp.StatusCode, err
 	}
 

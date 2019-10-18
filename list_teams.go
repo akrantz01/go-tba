@@ -35,6 +35,11 @@ func ListTeams(page int64, apiKey string, opts *RequestOptions) ([]responses.Tea
 		return nil, resp.StatusCode, err
 	}
 
+	// Close the body
+	if err := resp.Body.Close(); err != nil {
+		return nil, resp.StatusCode, err
+	}
+
 	return teams, resp.StatusCode, nil
 }
 
@@ -63,6 +68,11 @@ func ListTeamsSimple(page int64, apiKey string, opts *RequestOptions) ([]respons
 	// Decode body
 	var teams []responses.TeamSimple
 	if err := json.NewDecoder(resp.Body).Decode(&teams); err != nil {
+		return nil, resp.StatusCode, err
+	}
+
+	// Close the body
+	if err := resp.Body.Close(); err != nil {
 		return nil, resp.StatusCode, err
 	}
 
@@ -97,6 +107,11 @@ func ListTeamsKey(page int64, apiKey string, opts *RequestOptions) ([]string, in
 		return nil, resp.StatusCode, err
 	}
 
+	// Close the body
+	if err := resp.Body.Close(); err != nil {
+		return nil, resp.StatusCode, err
+	}
+
 	return teams, resp.StatusCode, nil
 }
 
@@ -125,6 +140,11 @@ func ListTeamsByYear(year, page int64, apiKey string, opts *RequestOptions) ([]r
 	// Decode body
 	var teams []responses.Team
 	if err := json.NewDecoder(resp.Body).Decode(&teams); err != nil {
+		return nil, resp.StatusCode, err
+	}
+
+	// Close the body
+	if err := resp.Body.Close(); err != nil {
 		return nil, resp.StatusCode, err
 	}
 
@@ -159,6 +179,11 @@ func ListTeamsByYearSimple(year, page int64, apiKey string, opts *RequestOptions
 		return nil, resp.StatusCode, err
 	}
 
+	// Close the body
+	if err := resp.Body.Close(); err != nil {
+		return nil, resp.StatusCode, err
+	}
+
 	return teams, resp.StatusCode, nil
 }
 
@@ -187,6 +212,11 @@ func ListTeamsByYearKey(year, page int64, apiKey string, opts *RequestOptions) (
 	// Decode body
 	var teams []string
 	if err := json.NewDecoder(resp.Body).Decode(&teams); err != nil {
+		return nil, resp.StatusCode, err
+	}
+
+	// Close the body
+	if err := resp.Body.Close(); err != nil {
 		return nil, resp.StatusCode, err
 	}
 

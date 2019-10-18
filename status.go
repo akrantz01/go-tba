@@ -32,5 +32,10 @@ func Status(apiKey string, opts *RequestOptions) (*responses.ApiStatus, int, err
 		return nil, resp.StatusCode, err
 	}
 
+	// Close the body
+	if err := resp.Body.Close(); err != nil {
+		return nil, resp.StatusCode, err
+	}
+
 	return &status, resp.StatusCode, nil
 }

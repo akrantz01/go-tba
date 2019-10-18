@@ -32,6 +32,11 @@ func Event(key, apiKey string, opts *RequestOptions) (*responses.Event, int, err
 		return nil, resp.StatusCode, err
 	}
 
+	// Close the body
+	if err := resp.Body.Close(); err != nil {
+		return nil, resp.StatusCode, err
+	}
+
 	return &event, resp.StatusCode, nil
 }
 
@@ -61,6 +66,11 @@ func EventSimple(key, apiKey string, opts *RequestOptions) (*responses.EventSimp
 		return nil, resp.StatusCode, err
 	}
 
+	// Close the body
+	if err := resp.Body.Close(); err != nil {
+		return nil, resp.StatusCode, err
+	}
+
 	return &event, resp.StatusCode, nil
 }
 
@@ -87,6 +97,11 @@ func EventAlliances(key, apiKey string, opts *RequestOptions) ([]responses.Event
 	// Decode body
 	var alliances []responses.EventAlliance
 	if err := json.NewDecoder(resp.Body).Decode(&alliances); err != nil {
+		return nil, resp.StatusCode, err
+	}
+
+	// Close the body
+	if err := resp.Body.Close(); err != nil {
 		return nil, resp.StatusCode, err
 	}
 
@@ -126,11 +141,19 @@ func EventInsights(key string, year int64, apiKey string, opts *RequestOptions) 
 		if err := json.NewDecoder(resp.Body).Decode(&insights); err != nil {
 			return nil, resp.StatusCode, err
 		}
+		// Close the body
+		if err := resp.Body.Close(); err != nil {
+			return nil, resp.StatusCode, err
+		}
 		return insights, resp.StatusCode, nil
 
 	case 2017:
 		var insights responses.EventInsights2016
 		if err := json.NewDecoder(resp.Body).Decode(&insights); err != nil {
+			return nil, resp.StatusCode, err
+		}
+		// Close the body
+		if err := resp.Body.Close(); err != nil {
 			return nil, resp.StatusCode, err
 		}
 		return insights, resp.StatusCode, nil
@@ -140,11 +163,19 @@ func EventInsights(key string, year int64, apiKey string, opts *RequestOptions) 
 		if err := json.NewDecoder(resp.Body).Decode(&insights); err != nil {
 			return nil, resp.StatusCode, err
 		}
+		// Close the body
+		if err := resp.Body.Close(); err != nil {
+			return nil, resp.StatusCode, err
+		}
 		return insights, resp.StatusCode, nil
 
 	case 2019:
 		var insights responses.EventInsights2016
 		if err := json.NewDecoder(resp.Body).Decode(&insights); err != nil {
+			return nil, resp.StatusCode, err
+		}
+		// Close the body
+		if err := resp.Body.Close(); err != nil {
 			return nil, resp.StatusCode, err
 		}
 		return insights, resp.StatusCode, nil
@@ -181,6 +212,11 @@ func EventOPRs(key, apiKey string, opts *RequestOptions) (*responses.EventOPRs, 
 		return nil, resp.StatusCode, err
 	}
 
+	// Close the body
+	if err := resp.Body.Close(); err != nil {
+		return nil, resp.StatusCode, err
+	}
+
 	return &oprs, resp.StatusCode, nil
 }
 
@@ -207,6 +243,11 @@ func EventPredictions(key, apiKey string, opts *RequestOptions) (*responses.Even
 	// Decode body
 	var predictions responses.EventPredictions
 	if err := json.NewDecoder(resp.Body).Decode(&predictions); err != nil {
+		return nil, resp.StatusCode, err
+	}
+
+	// Close the body
+	if err := resp.Body.Close(); err != nil {
 		return nil, resp.StatusCode, err
 	}
 
@@ -239,6 +280,11 @@ func EventRankings(key, apiKey string, opts *RequestOptions) ([]responses.EventR
 		return nil, resp.StatusCode, err
 	}
 
+	// Close the body
+	if err := resp.Body.Close(); err != nil {
+		return nil, resp.StatusCode, err
+	}
+
 	return rankings, resp.StatusCode, nil
 }
 
@@ -265,6 +311,11 @@ func EventDistrictPoints(key, apiKey string, opts *RequestOptions) (*responses.E
 	// Decode body
 	var districtPoints responses.EventDistrictPoints
 	if err := json.NewDecoder(resp.Body).Decode(&districtPoints); err != nil {
+		return nil, resp.StatusCode, err
+	}
+
+	// Close the body
+	if err := resp.Body.Close(); err != nil {
 		return nil, resp.StatusCode, err
 	}
 
@@ -297,6 +348,11 @@ func EventTeams(key, apiKey string, opts *RequestOptions) ([]responses.Team, int
 		return nil, resp.StatusCode, err
 	}
 
+	// Close the body
+	if err := resp.Body.Close(); err != nil {
+		return nil, resp.StatusCode, err
+	}
+
 	return teams, resp.StatusCode, nil
 }
 
@@ -323,6 +379,11 @@ func EventTeamsSimple(key, apiKey string, opts *RequestOptions) ([]responses.Tea
 	// Decode body
 	var teams []responses.TeamSimple
 	if err := json.NewDecoder(resp.Body).Decode(&teams); err != nil {
+		return nil, resp.StatusCode, err
+	}
+
+	// Close the body
+	if err := resp.Body.Close(); err != nil {
 		return nil, resp.StatusCode, err
 	}
 
@@ -355,6 +416,11 @@ func EventTeamsKey(key, apiKey string, opts *RequestOptions) ([]string, int, err
 		return nil, resp.StatusCode, err
 	}
 
+	// Close the body
+	if err := resp.Body.Close(); err != nil {
+		return nil, resp.StatusCode, err
+	}
+
 	return teams, resp.StatusCode, nil
 }
 
@@ -381,6 +447,11 @@ func EventTeamStatuses(event, apiKey string, opts *RequestOptions) ([]responses.
 	// Decode body
 	var teamEventStatuses []responses.TeamEventStatus
 	if err := json.NewDecoder(resp.Body).Decode(&teamEventStatuses); err != nil {
+		return nil, resp.StatusCode, err
+	}
+
+	// Close the body
+	if err := resp.Body.Close(); err != nil {
 		return nil, resp.StatusCode, err
 	}
 
@@ -413,6 +484,11 @@ func EventMatches(event, apiKey string, opts *RequestOptions) ([]responses.Match
 		return nil, resp.StatusCode, err
 	}
 
+	// Close the body
+	if err := resp.Body.Close(); err != nil {
+		return nil, resp.StatusCode, err
+	}
+
 	return matches, resp.StatusCode, nil
 }
 
@@ -439,6 +515,11 @@ func EventMatchesSimple(event, apiKey string, opts *RequestOptions) ([]responses
 	// Decode body
 	var matches []responses.MatchSimple
 	if err := json.NewDecoder(resp.Body).Decode(&matches); err != nil {
+		return nil, resp.StatusCode, err
+	}
+
+	// Close the body
+	if err := resp.Body.Close(); err != nil {
 		return nil, resp.StatusCode, err
 	}
 
@@ -471,6 +552,11 @@ func EventMatchesKey(event, apiKey string, opts *RequestOptions) ([]string, int,
 		return nil, resp.StatusCode, err
 	}
 
+	// Close the body
+	if err := resp.Body.Close(); err != nil {
+		return nil, resp.StatusCode, err
+	}
+
 	return matches, resp.StatusCode, nil
 }
 
@@ -500,6 +586,11 @@ func EventTimeseries(event, apiKey string, opts *RequestOptions) ([]string, int,
 		return nil, resp.StatusCode, err
 	}
 
+	// Close the body
+	if err := resp.Body.Close(); err != nil {
+		return nil, resp.StatusCode, err
+	}
+
 	return timeseries, resp.StatusCode, nil
 }
 
@@ -526,6 +617,11 @@ func EventAwards(event, apiKey string, opts *RequestOptions) ([]responses.Award,
 	// Decode body
 	var awards []responses.Award
 	if err := json.NewDecoder(resp.Body).Decode(&awards); err != nil {
+		return nil, resp.StatusCode, err
+	}
+
+	// Close the body
+	if err := resp.Body.Close(); err != nil {
 		return nil, resp.StatusCode, err
 	}
 

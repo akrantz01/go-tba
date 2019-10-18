@@ -33,6 +33,11 @@ func Team(team, apiKey string, opts *RequestOptions) (*responses.Team, int, erro
 		return nil, resp.StatusCode, err
 	}
 
+	// Close the body
+	if err := resp.Body.Close(); err != nil {
+		return nil, resp.StatusCode, err
+	}
+
 	return &t, resp.StatusCode, nil
 }
 
@@ -59,6 +64,11 @@ func TeamSimple(team, apiKey string, opts *RequestOptions) (*responses.TeamSimpl
 	// Decode body
 	var t responses.TeamSimple
 	if err := json.NewDecoder(resp.Body).Decode(&t); err != nil {
+		return nil, resp.StatusCode, err
+	}
+
+	// Close the body
+	if err := resp.Body.Close(); err != nil {
 		return nil, resp.StatusCode, err
 	}
 
@@ -91,6 +101,11 @@ func YearsTeamParticipated(team, apiKey string, opts *RequestOptions) ([]int, in
 		return nil, resp.StatusCode, err
 	}
 
+	// Close the body
+	if err := resp.Body.Close(); err != nil {
+		return nil, resp.StatusCode, err
+	}
+
 	return years, resp.StatusCode, nil
 }
 
@@ -117,6 +132,11 @@ func TeamDistricts(team, apiKey string, opts *RequestOptions) ([]responses.Distr
 	// Decode body
 	var districts []responses.DistrictList
 	if err := json.NewDecoder(resp.Body).Decode(&districts); err != nil {
+		return nil, resp.StatusCode, err
+	}
+
+	// Close the body
+	if err := resp.Body.Close(); err != nil {
 		return nil, resp.StatusCode, err
 	}
 
@@ -149,6 +169,11 @@ func TeamRobots(team, apiKey string, opts *RequestOptions) ([]responses.TeamRobo
 		return nil, resp.StatusCode, err
 	}
 
+	// Close the body
+	if err := resp.Body.Close(); err != nil {
+		return nil, resp.StatusCode, err
+	}
+
 	return robots, resp.StatusCode, nil
 }
 
@@ -175,6 +200,11 @@ func TeamEvents(team, apiKey string, opts *RequestOptions) ([]responses.Event, i
 	// Decode body
 	var events []responses.Event
 	if err := json.NewDecoder(resp.Body).Decode(&events); err != nil {
+		return nil, resp.StatusCode, err
+	}
+
+	// Close the body
+	if err := resp.Body.Close(); err != nil {
 		return nil, resp.StatusCode, err
 	}
 
@@ -207,6 +237,11 @@ func TeamEventsSimple(team, apiKey string, opts *RequestOptions) ([]responses.Ev
 		return nil, resp.StatusCode, err
 	}
 
+	// Close the body
+	if err := resp.Body.Close(); err != nil {
+		return nil, resp.StatusCode, err
+	}
+
 	return events, resp.StatusCode, nil
 }
 
@@ -233,6 +268,11 @@ func TeamEventsKey(team, apiKey string, opts *RequestOptions) ([]string, int, er
 	// Decode body
 	var events []string
 	if err := json.NewDecoder(resp.Body).Decode(&events); err != nil {
+		return nil, resp.StatusCode, err
+	}
+
+	// Close the body
+	if err := resp.Body.Close(); err != nil {
 		return nil, resp.StatusCode, err
 	}
 
@@ -265,6 +305,11 @@ func TeamEventsByYear(team string, year int64, apiKey string, opts *RequestOptio
 		return nil, resp.StatusCode, err
 	}
 
+	// Close the body
+	if err := resp.Body.Close(); err != nil {
+		return nil, resp.StatusCode, err
+	}
+
 	return events, resp.StatusCode, nil
 }
 
@@ -291,6 +336,11 @@ func TeamEventsByYearSimple(team string, year int64, apiKey string, opts *Reques
 	// Decode body
 	var events []responses.EventSimple
 	if err := json.NewDecoder(resp.Body).Decode(&events); err != nil {
+		return nil, resp.StatusCode, err
+	}
+
+	// Close the body
+	if err := resp.Body.Close(); err != nil {
 		return nil, resp.StatusCode, err
 	}
 
@@ -323,6 +373,11 @@ func TeamEventsByYearKey(team string, year int64, apiKey string, opts *RequestOp
 		return nil, resp.StatusCode, err
 	}
 
+	// Close the body
+	if err := resp.Body.Close(); err != nil {
+		return nil, resp.StatusCode, err
+	}
+
 	return events, resp.StatusCode, nil
 }
 
@@ -349,6 +404,11 @@ func TeamEventStatusesByYear(team string, year int64, apiKey string, opts *Reque
 	// Decode body
 	var statuses map[string]responses.TeamEventStatus
 	if err := json.NewDecoder(resp.Body).Decode(&statuses); err != nil {
+		return nil, resp.StatusCode, err
+	}
+
+	// Close the body
+	if err := resp.Body.Close(); err != nil {
 		return nil, resp.StatusCode, err
 	}
 
@@ -381,6 +441,11 @@ func TeamEventMatches(team, event, apiKey string, opts *RequestOptions) ([]respo
 		return nil, resp.StatusCode, err
 	}
 
+	// Close the body
+	if err := resp.Body.Close(); err != nil {
+		return nil, resp.StatusCode, err
+	}
+
 	return matches, resp.StatusCode, nil
 }
 
@@ -407,6 +472,11 @@ func TeamEventMatchesSimple(team, event, apiKey string, opts *RequestOptions) ([
 	// Decode body
 	var matches []responses.MatchSimple
 	if err := json.NewDecoder(resp.Body).Decode(&matches); err != nil {
+		return nil, resp.StatusCode, err
+	}
+
+	// Close the body
+	if err := resp.Body.Close(); err != nil {
 		return nil, resp.StatusCode, err
 	}
 
@@ -439,6 +509,11 @@ func TeamEventMatchesKey(team, event, apiKey string, opts *RequestOptions) ([]st
 		return nil, resp.StatusCode, err
 	}
 
+	// Close the body
+	if err := resp.Body.Close(); err != nil {
+		return nil, resp.StatusCode, err
+	}
+
 	return matches, resp.StatusCode, nil
 }
 
@@ -465,6 +540,11 @@ func TeamEventAwards(team, event, apiKey string, opts *RequestOptions) ([]respon
 	// Decode body
 	var awards []responses.Award
 	if err := json.NewDecoder(resp.Body).Decode(&awards); err != nil {
+		return nil, resp.StatusCode, err
+	}
+
+	// Close the body
+	if err := resp.Body.Close(); err != nil {
 		return nil, resp.StatusCode, err
 	}
 
@@ -497,6 +577,11 @@ func TeamEventStatus(team, event, apiKey string, opts *RequestOptions) (*respons
 		return nil, resp.StatusCode, err
 	}
 
+	// Close the body
+	if err := resp.Body.Close(); err != nil {
+		return nil, resp.StatusCode, err
+	}
+
 	return &status, resp.StatusCode, nil
 }
 
@@ -523,6 +608,11 @@ func TeamAwards(team, apiKey string, opts *RequestOptions) ([]responses.Award, i
 	// Decode body
 	var awards []responses.Award
 	if err := json.NewDecoder(resp.Body).Decode(&awards); err != nil {
+		return nil, resp.StatusCode, err
+	}
+
+	// Close the body
+	if err := resp.Body.Close(); err != nil {
 		return nil, resp.StatusCode, err
 	}
 
@@ -555,6 +645,11 @@ func TeamAwardsByYear(team string, year int64, apiKey string, opts *RequestOptio
 		return nil, resp.StatusCode, err
 	}
 
+	// Close the body
+	if err := resp.Body.Close(); err != nil {
+		return nil, resp.StatusCode, err
+	}
+
 	return awards, resp.StatusCode, nil
 }
 
@@ -581,6 +676,11 @@ func TeamMatchesByYear(team string, year int64, apiKey string, opts *RequestOpti
 	// Decode body
 	var matches []responses.Match
 	if err := json.NewDecoder(resp.Body).Decode(&matches); err != nil {
+		return nil, resp.StatusCode, err
+	}
+
+	// Close the body
+	if err := resp.Body.Close(); err != nil {
 		return nil, resp.StatusCode, err
 	}
 
@@ -613,6 +713,11 @@ func TeamMatchesByYearSimple(team string, year int64, apiKey string, opts *Reque
 		return nil, resp.StatusCode, err
 	}
 
+	// Close the body
+	if err := resp.Body.Close(); err != nil {
+		return nil, resp.StatusCode, err
+	}
+
 	return matches, resp.StatusCode, nil
 }
 
@@ -639,6 +744,11 @@ func TeamMatchesByYearKey(team string, year int64, apiKey string, opts *RequestO
 	// Decode body
 	var matches []string
 	if err := json.NewDecoder(resp.Body).Decode(&matches); err != nil {
+		return nil, resp.StatusCode, err
+	}
+
+	// Close the body
+	if err := resp.Body.Close(); err != nil {
 		return nil, resp.StatusCode, err
 	}
 
@@ -671,6 +781,11 @@ func TeamMediaByYear(team string, year int64, apiKey string, opts *RequestOption
 		return nil, resp.StatusCode, err
 	}
 
+	// Close the body
+	if err := resp.Body.Close(); err != nil {
+		return nil, resp.StatusCode, err
+	}
+
 	return media, resp.StatusCode, nil
 }
 
@@ -697,6 +812,11 @@ func TeamMediaByTag(team, tag, apiKey string, opts *RequestOptions) ([]responses
 	// Decode body
 	var media []responses.Media
 	if err := json.NewDecoder(resp.Body).Decode(&media); err != nil {
+		return nil, resp.StatusCode, err
+	}
+
+	// Close the body
+	if err := resp.Body.Close(); err != nil {
 		return nil, resp.StatusCode, err
 	}
 
@@ -729,6 +849,11 @@ func TeamMediaByTagAndYear(team, tag string, year int64, apiKey string, opts *Re
 		return nil, resp.StatusCode, err
 	}
 
+	// Close the body
+	if err := resp.Body.Close(); err != nil {
+		return nil, resp.StatusCode, err
+	}
+
 	return media, resp.StatusCode, nil
 }
 
@@ -755,6 +880,11 @@ func TeamSocialMedia(team, apiKey string, opts *RequestOptions) ([]responses.Med
 	// Decode body
 	var socialMedia []responses.Media
 	if err := json.NewDecoder(resp.Body).Decode(&socialMedia); err != nil {
+		return nil, resp.StatusCode, err
+	}
+
+	// Close the body
+	if err := resp.Body.Close(); err != nil {
 		return nil, resp.StatusCode, err
 	}
 
