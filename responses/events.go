@@ -73,7 +73,7 @@ type EventAlliance struct {
 		Record             WinLossTieRecord `json:"record"`
 		CurrentLevelRecord WinLossTieRecord `json:"current_level_record"`
 		Status             string           `json:"status"`
-	}
+	} `json:"status"`
 }
 
 type EventPredictions map[string]interface{}
