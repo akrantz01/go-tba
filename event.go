@@ -257,7 +257,7 @@ func EventPredictions(key, apiKey string, opts *RequestOptions) (*responses.Even
 }
 
 // Get rankings for a given event
-func EventRankings(key, apiKey string, opts *RequestOptions) ([]responses.EventRanking, int, error) {
+func EventRankings(key, apiKey string, opts *RequestOptions) (*responses.EventRanking, int, error) {
 	// Generate the request
 	req := newRequest("/event/"+key+"/rankings", apiKey, opts)
 
@@ -277,7 +277,7 @@ func EventRankings(key, apiKey string, opts *RequestOptions) ([]responses.EventR
 	}
 
 	// Decode body
-	var rankings []responses.EventRanking
+	var rankings responses.EventRanking
 	if err := json.NewDecoder(resp.Body).Decode(&rankings); err != nil {
 		return nil, resp.StatusCode, err
 	}
@@ -287,7 +287,7 @@ func EventRankings(key, apiKey string, opts *RequestOptions) ([]responses.EventR
 		return nil, resp.StatusCode, err
 	}
 
-	return rankings, resp.StatusCode, nil
+	return &rankings, resp.StatusCode, nil
 }
 
 // Get district points for a given event
