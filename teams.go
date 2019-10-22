@@ -3,6 +3,7 @@ package tba
 import (
 	"encoding/json"
 	"github.com/akrantz01/go-tba/responses"
+	"github.com/mitchellh/mapstructure"
 	"net/http"
 	"strconv"
 )
@@ -446,6 +447,40 @@ func TeamEventMatches(team, event, apiKey string, opts *RequestOptions) ([]respo
 		return nil, resp.StatusCode, err
 	}
 
+	for _, match := range matches {
+		// Coerce score breakdown type
+		year, _ := strconv.ParseInt(match.Key[:4], 10, 64)
+		switch year {
+		case 2019:
+			var score responses.ScoringBreakdown2019
+			if err := mapstructure.Decode(match.ScoreBreakdown, &score); err != nil {
+				return nil, resp.StatusCode, err
+			}
+			match.ScoreBreakdown = score
+
+		case 2018:
+			var score responses.ScoringBreakdown2018
+			if err := mapstructure.Decode(match.ScoreBreakdown, &score); err != nil {
+				return nil, resp.StatusCode, err
+			}
+			match.ScoreBreakdown = score
+
+		case 2017:
+			var score responses.ScoringBreakdown2017
+			if err := mapstructure.Decode(match.ScoreBreakdown, &score); err != nil {
+				return nil, resp.StatusCode, err
+			}
+			match.ScoreBreakdown = score
+
+		case 2016:
+			var score responses.ScoringBreakdown2016
+			if err := mapstructure.Decode(match.ScoreBreakdown, &score); err != nil {
+				return nil, resp.StatusCode, err
+			}
+			match.ScoreBreakdown = score
+		}
+	}
+
 	return matches, resp.StatusCode, nil
 }
 
@@ -682,6 +717,40 @@ func TeamMatchesByYear(team string, year int64, apiKey string, opts *RequestOpti
 	// Close the body
 	if err := resp.Body.Close(); err != nil {
 		return nil, resp.StatusCode, err
+	}
+
+	for _, match := range matches {
+		// Coerce score breakdown type
+		year, _ := strconv.ParseInt(match.Key[:4], 10, 64)
+		switch year {
+		case 2019:
+			var score responses.ScoringBreakdown2019
+			if err := mapstructure.Decode(match.ScoreBreakdown, &score); err != nil {
+				return nil, resp.StatusCode, err
+			}
+			match.ScoreBreakdown = score
+
+		case 2018:
+			var score responses.ScoringBreakdown2018
+			if err := mapstructure.Decode(match.ScoreBreakdown, &score); err != nil {
+				return nil, resp.StatusCode, err
+			}
+			match.ScoreBreakdown = score
+
+		case 2017:
+			var score responses.ScoringBreakdown2017
+			if err := mapstructure.Decode(match.ScoreBreakdown, &score); err != nil {
+				return nil, resp.StatusCode, err
+			}
+			match.ScoreBreakdown = score
+
+		case 2016:
+			var score responses.ScoringBreakdown2016
+			if err := mapstructure.Decode(match.ScoreBreakdown, &score); err != nil {
+				return nil, resp.StatusCode, err
+			}
+			match.ScoreBreakdown = score
+		}
 	}
 
 	return matches, resp.StatusCode, nil
