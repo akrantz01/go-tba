@@ -107,6 +107,17 @@ func EventAlliances(key, apiKey string, opts *RequestOptions) ([]responses.Event
 		return nil, resp.StatusCode, err
 	}
 
+	// Convert alliance status to string or struct
+	for i, a := range alliances {
+		if m, ok := a.Status.(map[string]interface{}); ok {
+			var allianceStatus responses.EventAllianceStatus
+			if err := mapstructure.Decode(m, &allianceStatus); err != nil {
+				return nil, resp.StatusCode, err
+			}
+			alliances[i].Status = allianceStatus
+		}
+	}
+
 	return alliances, resp.StatusCode, nil
 }
 

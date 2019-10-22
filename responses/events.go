@@ -65,15 +65,17 @@ type EventAlliance struct {
 		In  string `json:"in"`
 		Out string `json:"out"`
 	} `json:"backup"`
-	Declines []string `json:"declines"`
-	Picks []string `json:"picks"`
-	Status   struct {
-		PlayoffAverage     float64          `json:"playoff_average"`
-		Level              string           `json:"level"`
-		Record             WinLossTieRecord `json:"record"`
-		CurrentLevelRecord WinLossTieRecord `json:"current_level_record"`
-		Status             string           `json:"status"`
-	} `json:"status"`
+	Declines []string    `json:"declines"`
+	Picks    []string    `json:"picks"`
+	Status   interface{} `json:"status"`
+}
+
+type EventAllianceStatus struct {
+	PlayoffAverage     float64          `mapstructure:"playoff_average"`
+	Level              string           `mapstructure:"level"`
+	Record             WinLossTieRecord `mapstructure:"record"`
+	CurrentLevelRecord WinLossTieRecord `mapstructure:"current_level_record"`
+	Status             string           `mapstructure:"status"`
 }
 
 type EventPredictions map[string]interface{}
