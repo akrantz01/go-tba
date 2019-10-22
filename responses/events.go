@@ -66,6 +66,7 @@ type EventAlliance struct {
 		Out string `json:"out"`
 	} `json:"backup"`
 	Declines []string `json:"declines"`
+	Picks []string `json:"picks"`
 	Status   struct {
 		PlayoffAverage     float64          `json:"playoff_average"`
 		Level              string           `json:"level"`
