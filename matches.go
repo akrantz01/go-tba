@@ -3,13 +3,15 @@ package tba
 import (
 	"encoding/json"
 	"github.com/akrantz01/go-tba/responses"
+	"github.com/mitchellh/mapstructure"
 	"net/http"
+	"strconv"
 )
 
 // Get information about a match
 func Match(key, apiKey string, opts *RequestOptions) (*responses.Match, int, error) {
 	// Generate the request
-	req := newRequest("/matches/"+key, apiKey, opts)
+	req := newRequest("/match/"+key, apiKey, opts)
 
 	// Send the request
 	resp, err := http.DefaultClient.Do(req)
@@ -37,13 +39,45 @@ func Match(key, apiKey string, opts *RequestOptions) (*responses.Match, int, err
 		return nil, resp.StatusCode, err
 	}
 
+	// Coerce score breakdown type
+	year, _ := strconv.ParseInt(match.Key[:4], 10, 64)
+	switch year {
+	case 2019:
+		var score responses.ScoringBreakdown2019
+		if err := mapstructure.Decode(match.ScoreBreakdown, &score); err != nil {
+			return nil, resp.StatusCode, err
+		}
+		match.ScoreBreakdown = score
+
+	case 2018:
+		var score responses.ScoringBreakdown2018
+		if err := mapstructure.Decode(match.ScoreBreakdown, &score); err != nil {
+			return nil, resp.StatusCode, err
+		}
+		match.ScoreBreakdown = score
+
+	case 2017:
+		var score responses.ScoringBreakdown2017
+		if err := mapstructure.Decode(match.ScoreBreakdown, &score); err != nil {
+			return nil, resp.StatusCode, err
+		}
+		match.ScoreBreakdown = score
+
+	case 2016:
+		var score responses.ScoringBreakdown2016
+		if err := mapstructure.Decode(match.ScoreBreakdown, &score); err != nil {
+			return nil, resp.StatusCode, err
+		}
+		match.ScoreBreakdown = score
+	}
+
 	return &match, resp.StatusCode, nil
 }
 
 // Get a simplified information about a match
 func MatchSimple(key, apiKey string, opts *RequestOptions) (*responses.MatchSimple, int, error) {
 	// Generate the request
-	req := newRequest("/matches/"+key+"/simple", apiKey, opts)
+	req := newRequest("/match/"+key+"/simple", apiKey, opts)
 
 	// Send the request
 	resp, err := http.DefaultClient.Do(req)
@@ -77,7 +111,7 @@ func MatchSimple(key, apiKey string, opts *RequestOptions) (*responses.MatchSimp
 // Get timeseries information about a match
 func MatchTimeseries(key, apiKey string, opts *RequestOptions) (*responses.Timeseries2018, int, error) {
 	// Generate the request
-	req := newRequest("/matches/"+key+"/timeseries", apiKey, opts)
+	req := newRequest("/match/"+key+"/timeseries", apiKey, opts)
 
 	// Send the request
 	resp, err := http.DefaultClient.Do(req)

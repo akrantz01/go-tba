@@ -31,7 +31,7 @@ type Match struct {
 	PredictedTime   int64  `json:"predicted_time"`
 	ActualTime      int64  `json:"actual_time"`
 	PostResultTime  int64  `json:"post_result_time"`
-	ScoreBreakdown  ScoringBreakdown
+	ScoreBreakdown  interface{} `json:"score_breakdown"`
 	Videos          []struct {
 		Type string `json:"type"`
 		Key  string `json:"key"`
