@@ -18,5 +18,6 @@ type Ranking struct {
 	Rank                 int              `json:"rank"`
 	Disqualifications    int              `json:"dq"`
 	TeamKey              string           `json:"team_key"`
-	SortOrders           []SortOrder      `json:"sort_orders"`
+	SortOrders           []int            `json:"sort_orders"`
+	ExtraStats           []int            `json:"extra_stats"`
 }
