@@ -406,7 +406,7 @@ func EventTeamsSimple(key, apiKey string, opts *RequestOptions) ([]responses.Tea
 // Get teams in an event
 func EventTeamKeys(key, apiKey string, opts *RequestOptions) ([]string, int, error) {
 	// Generate the request
-	req := newRequest("/event/"+key+"/teams/key", apiKey, opts)
+	req := newRequest("/event/"+key+"/teams/keys", apiKey, opts)
 
 	// Send the request
 	resp, err := http.DefaultClient.Do(req)
@@ -576,7 +576,7 @@ func EventMatchesSimple(event, apiKey string, opts *RequestOptions) ([]responses
 // Get the keys of the matches of an event
 func EventMatchKeys(event, apiKey string, opts *RequestOptions) ([]string, int, error) {
 	// Generate the request
-	req := newRequest("/event/"+event+"/matches/key", apiKey, opts)
+	req := newRequest("/event/"+event+"/matches/keys", apiKey, opts)
 
 	// Send the request
 	resp, err := http.DefaultClient.Do(req)
