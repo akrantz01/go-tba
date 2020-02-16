@@ -190,3 +190,43 @@ type ScoringBreakdownAlliance2019 struct {
 	TopRightRocketNear         string `mapstructure:"topRightRocketNear"`
 	TotalPoints                int    `mapstructure:"totalPoints"`
 }
+
+type ScoringBreakdown2020 struct {
+	Red ScoringBreakdown2020Alliance `mapstructure:"red"`
+	Blue ScoringBreakdown2020Alliance `mapstructure:"blue"`
+}
+
+type ScoringBreakdown2020Alliance struct {
+	InitLineRobot1 string `mapstructure:"initLineRobot1"`
+	EndgameRobot1 string `mapstructure:"endgameRobot1"`
+	InitLineRobot2 string `mapstructure:"initLineRobot2"`
+	EndgameRobot2 string `mapstructure:"endgameRobot2"`
+	InitLineRobot3 string `mapstructure:"initLineRobot3"`
+	EndgameRobot3 string `mapstructure:"endgameRobot3"`
+	AutoCellsBottom int `mapstructure:"autoCellsBottom"`
+	AutoCellsOuter int `mapstructure:"autoCellsOuter"`
+	AutoCellsInner int `mapstructure:"autoCellsInner"`
+	TeleopCellsBottom int `mapstructure:"teleopCellsBottom"`
+	TeleopCellsOuter int `mapstructure:"teleopCellsOuter"`
+	TeleopCellsInner int `mapstructure:"teleopCellsInner"`
+	Stage1Activated bool `mapstructure:"stage1Activated"`
+	Stage2Activated bool `mapstructure:"stage2Activated"`
+	Stage3Activated bool `mapstructure:"stage3Activated"`
+	Stage3TargetColor string `mapstructure:"stage3TargetColor"`
+	EndgameRungIsLevel string `mapstructure:"endgameRungIsLevel"`
+	AutoInitLinePoints int `mapstructure:"autoInitLinePoints"`
+	AutoCellPoints int `mapstructure:"autoCellPoints"`
+	AutoPoints int `mapstructure:"autoPoints"`
+	TeleopCellPoints int `mapstructure:"teleopCellPoints"`
+	ControlPanelPoints int `mapstructure:"controlPanelPoints"`
+	EndgamePoints int `mapstructure:"endgamePoints"`
+	TeleopPoints int `mapstructure:"teleopPoints"`
+	ShieldOperationalRankingPoint bool `mapstructure:"shieldOperationalRankingPoint"`
+	ShieldEnergizedRankingPoint bool `mapstructure:"shieldEnergizedRankingPoint"`
+	FoulCount int `mapstructure:"foulCount"`
+	TechFoulCount int `mapstructure:"techFoulCount"`
+	AdjustPoints int `mapstructure:"adjustPoints"`
+	FoulPoints int `mapstructure:"foulPoints"`
+	RankingPoints int `mapstructure:"rp"`
+	TotalPoints int `mapstructure:"totlaPoints"`
+}

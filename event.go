@@ -506,6 +506,12 @@ func EventMatches(event, apiKey string, opts *RequestOptions) ([]responses.Match
 		// Coerce score breakdown type
 		year, _ := strconv.ParseInt(match.Key[:4], 10, 64)
 		switch year {
+		case 2020:
+			var score responses.ScoringBreakdown2020
+			if err := mapstructure.Decode(match.ScoreBreakdown, &score); err != nil {
+				return nil, resp.StatusCode, err
+			}
+			match.ScoreBreakdown = score
 		case 2019:
 			var score responses.ScoringBreakdown2019
 			if err := mapstructure.Decode(match.ScoreBreakdown, &score); err != nil {
